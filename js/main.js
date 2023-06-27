@@ -3,8 +3,7 @@ const form = document.getElementById("novoItem");
 //coleta lista
 const lista = document.getElementById("lista-itens");
 
-
-const itens = [];
+const itens = localStorage.getItem("itens") || [];
 
 
 form.addEventListener('submit', (evento) => {
@@ -43,11 +42,12 @@ function criaElemento(nome, quantidade) {
     itens.push(itemAtual);
 
     //setando no localstorage
-    localStorage.setItem("Item", JSON.stringify(itens));
+    localStorage.setItem("Itens", JSON.stringify(itens));
       
 } 
 
 //limpa localstorage
-form.addEventListener('click', () => {
+document.getElementById("limpa").addEventListener('click', () => {
     localStorage.clear();
+    console.log("limpo")
 })
