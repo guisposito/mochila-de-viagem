@@ -7,7 +7,7 @@ const ulItens = document.getElementById('lista-itens');
 //Pega o input do item
 const itensInput = document.getElementsByClassName('item-input');
 //Recebe informações do local Storage
-const listaRecuperada =  localStorage.getItem('listaDeItens', )
+const listaRecuperada =  localStorage.getItem('listaDeItens', );
 
 form.addEventListener('submit', (ev) => {
     ev.preventDefault();
