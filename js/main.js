@@ -2,8 +2,8 @@
 const form = document.getElementById("novoItem");
 //coleta lista
 const lista = document.getElementById("lista-itens");
-
-const itens = localStorage.getItem("itens") || [];
+//pega lista ou cria o objeto vazio
+const itens = JSON.parse(localStorage.getItem("itens")) || [];
 
 
 form.addEventListener('submit', (evento) => {
@@ -50,4 +50,9 @@ function criaElemento(nome, quantidade) {
 document.getElementById("limpa").addEventListener('click', () => {
     localStorage.clear();
     console.log("limpo")
+})
+
+
+itens.forEach((el) => {
+    console.log(el.nome, el.quantidade);
 })
