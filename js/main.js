@@ -29,6 +29,9 @@ form.addEventListener('submit', (evento) => {
         
         atualizaElemento(itemAtual);
 
+        //atualiza o array no localstorage
+        itens[existe.id] = itemAtual;
+
     } else {
         //Autoincrementa o id
         itemAtual.id = itens.length;
@@ -36,9 +39,6 @@ form.addEventListener('submit', (evento) => {
         //salvando itens no array
         itens.push(itemAtual);
     }
-
-    
-
     
     //setando no localstorage
     localStorage.setItem("Itens", JSON.stringify(itens));
