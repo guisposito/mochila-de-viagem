@@ -11,7 +11,6 @@ form.addEventListener('submit', (evento) => {
     const nome = evento.target.elements['nome'] ;
     const quantidade = evento.target.elements['quantidade'];
 
-
     criaElemento(nome.value , quantidade.value);
 
     nome.value = "";
@@ -19,7 +18,6 @@ form.addEventListener('submit', (evento) => {
 })
 
 function criaElemento(nome, quantidade) {
-    
     //cria elemento
     const novoItem = document.createElement('li')
     //adiciona classe
@@ -49,7 +47,7 @@ function criaElemento(nome, quantidade) {
 //limpa localstorage
 document.getElementById("limpa").addEventListener('click', () => {
     localStorage.clear();
-    console.log("limpo")
+    console.log("limpo");
 })
 
 
