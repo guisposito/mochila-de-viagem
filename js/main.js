@@ -20,9 +20,26 @@ form.addEventListener('submit', (evento) => {
         "qtd" : quantidade.value
     }
 
-    criaElemento(itemAtual);
-    //salvando itens no array
-    itens.push(itemAtual);
+    //Verifica no array de itens se possui um elemento com o mesmo nome
+    const existe = itens.find(elemento => elemento.nome === nome.value);
+
+    //Valida se o elemento for verdadeiro continua igual e se for falso 
+    if (existe) {
+        itemAtual.id = existe.id;
+        
+        atualizaElemento(itemAtual);
+
+    } else {
+        //Autoincrementa o id
+        itemAtual.id = itens.length;
+        criaElemento(itemAtual);
+        //salvando itens no array
+        itens.push(itemAtual);
+    }
+
+    
+
+    
     //setando no localstorage
     localStorage.setItem("Itens", JSON.stringify(itens));
 
@@ -38,6 +55,8 @@ function criaElemento(item) {
     //Cria elemento do numero
     const numeroItem = document.createElement('strong');
     numeroItem.innerHTML = item.qtd;
+    //Criando o atributo data
+    numeroItem.dataset.id = item.id;
     //coloca o numero dentro do elemento de li
     novoItem.appendChild(numeroItem);
     novoItem.innerHTML += item.nome;
@@ -53,3 +72,7 @@ document.getElementById("limpa").addEventListener('click', () => {
 })
 
 
+function atualizaElemento(item) {
+    //Coleta o elemento strong, concatena o id com o id do item e substitui
+    document.querySelector("[data-id='"+item.id+"']").innerHTML = item.qtd;
+}
