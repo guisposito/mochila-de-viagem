@@ -30,11 +30,11 @@ form.addEventListener('submit', (evento) => {
         atualizaElemento(itemAtual);
 
         //atualiza o array no localstorage
-        itens[existe.id] = itemAtual;
+        itens[itens.findIndex(elemento => elemento.id == existe.id)] = itemAtual;
 
     } else {
         //Autoincrementa o id
-        itemAtual.id = itens.length;
+        itemAtual.id = itens[itens.length -1] ? itens[itens.length-1].id +1 : 0;
         criaElemento(itemAtual);
         //salvando itens no array
         itens.push(itemAtual);
@@ -71,7 +71,7 @@ function criaElemento(item) {
 //limpa localstorage
 document.getElementById("limpa").addEventListener('click', () => {
     localStorage.clear();
-    console.log("limpo");
+    
 })
 
 
