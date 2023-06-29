@@ -61,6 +61,9 @@ function criaElemento(item) {
     novoItem.appendChild(numeroItem);
     novoItem.innerHTML += item.nome;
 
+
+    //Trazendo o botão deleta
+    novoItem.appendChild(botaooDeleta()); 
     //implementa o item na lista
     lista.appendChild(novoItem);
 } 
@@ -75,4 +78,19 @@ document.getElementById("limpa").addEventListener('click', () => {
 function atualizaElemento(item) {
     //Coleta o elemento strong, concatena o id com o id do item e substitui
     document.querySelector("[data-id='"+item.id+"']").innerHTML = item.qtd;
+}
+
+function botaooDeleta() {
+    const elementoBotao = document.createElement('button');
+    elementoBotao.innerText = "X";
+
+    elementoBotao.addEventListener('click', function() {
+        deletaElemento(this.parentNode);
+    })
+
+    return elementoBotao;
+}
+
+function deletaElemento(el) {
+    el.remove();
 }
