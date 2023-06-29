@@ -40,8 +40,8 @@ form.addEventListener('submit', (evento) => {
         itens.push(itemAtual);
     }
     
-    //setando no localstorage
-    localStorage.setItem("Itens", JSON.stringify(itens));
+    //atualizando localstorage
+    atualizaLocalStorage();
 
     nome.value = "";
     quantidade.value = "";
@@ -63,7 +63,7 @@ function criaElemento(item) {
 
 
     //Trazendo o botão deleta
-    novoItem.appendChild(botaooDeleta()); 
+    novoItem.appendChild(botaooDeleta(item.id)); 
     //implementa o item na lista
     lista.appendChild(novoItem);
 } 
@@ -80,17 +80,28 @@ function atualizaElemento(item) {
     document.querySelector("[data-id='"+item.id+"']").innerHTML = item.qtd;
 }
 
-function botaooDeleta() {
+function botaooDeleta(id) {
     const elementoBotao = document.createElement('button');
     elementoBotao.innerText = "X";
 
     elementoBotao.addEventListener('click', function() {
-        deletaElemento(this.parentNode);
+        deletaElemento(this.parentNode, id);
     })
 
     return elementoBotao;
 }
 
-function deletaElemento(el) {
+function deletaElemento(el, id) {
     el.remove();
+
+    //deleta itens do array 
+    itens.splice(itens.findIndex(elemento => elemento.id === id), 1);
+
+    //atualizando localstorage
+    atualizaLocalStorage();
+}
+
+
+function atualizaLocalStorage(){
+    localStorage.setItem("Itens", JSON.stringify(itens));
 }
